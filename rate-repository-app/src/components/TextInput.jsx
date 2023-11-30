@@ -1,10 +1,21 @@
 import { TextInput as NativeTextInput, StyleSheet } from 'react-native';
 
-// eslint-disable-next-line no-unused-vars
-const styles = StyleSheet.create({});
-// eslint-disable-next-line no-unused-vars
+const styles = StyleSheet.create({
+  input: {
+    padding: 8,
+    height: 40,
+    borderRadius: 5,
+    paddingHorizontal: 8,
+  },
+  errorStyle: {
+    borderColor: 'red',
+    borderWidth: 1,
+  },
+
+});
+
 const TextInput = ({ style, error,secureTextEntry, ...props }) => {
-  const textInputStyle = [style];
+  const textInputStyle = [styles.input, style, error ? styles.errorStyle : null];
 
   return <NativeTextInput style={textInputStyle} secureTextEntry={secureTextEntry} {...props} />;
 };
