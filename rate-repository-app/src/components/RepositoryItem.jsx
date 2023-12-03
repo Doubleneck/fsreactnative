@@ -3,6 +3,28 @@ import { View, Image, StyleSheet} from 'react-native';
 import Text from './Text';
 import theme from '../theme';
 import RepositoryItemNumbers from './RepositoryItemNumbers';
+  
+const RepositoryItem = ({ repository }) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.flexContainer}>
+        <View style={styles.flexItemA}>
+          <Image style={styles.avatar} source={{ uri: repository.ownerAvatarUrl }} />
+        </View>
+        <View style={styles.flexItemB}>
+          <Text fontSize="subheading" fontWeight="bold" >{repository.fullName}</Text>
+          <Text style={{ marginTop: 8, color: theme.colors.textSecondary }}  >{repository.description}</Text>
+          <View style={styles.languageContainer}>
+            <Text style={styles.languageText}>{repository.language}</Text>
+          </View>
+        </View>
+      </View>
+      <View >
+        <RepositoryItemNumbers repository={repository}  />
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   flexContainer: {
@@ -55,29 +77,5 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   }, 
 });
-  
-const RepositoryItem = ({ repository }) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.flexContainer}>
-        <View style={styles.flexItemA}>
-          <Image style={styles.avatar} source={{ uri: repository.ownerAvatarUrl }} />
-        </View>
-        <View style={styles.flexItemB}>
-          <Text fontSize="subheading" fontWeight="bold" >{repository.fullName}</Text>
-          <Text style={{ marginTop: 8, color: theme.colors.textSecondary }}  >{repository.description}</Text>
-          <View style={styles.languageContainer}>
-            <Text style={styles.languageText}>{repository.language}</Text>
-          </View>
-        </View>
-      </View>
-      <View >
-        <RepositoryItemNumbers repository={repository}  />
-      </View>
-      
-    </View>
-  );
-};
-
 export default RepositoryItem;
 
