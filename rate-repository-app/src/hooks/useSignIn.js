@@ -1,19 +1,24 @@
 import { gql, useMutation } from '@apollo/client';
-
-const AUTHENTICATE = gql`
-mutation authenticate($credentials: AuthenticateInput!) {
-    authenticate(credentials: $credentials) {
-      accessToken
-    }
-  }
-`;
+import  useAuthStorage from '../hooks/useAuthStorage';
+import { useApolloClient } from '@apollo/client';
+import { useNavigate} from 'react-router-native';
+import { AUTHENTICATE} from '../graphql/mutations';
 
 const useSignIn = () => {
+  const authStorage = useAuthStorage();
+  const navigate = useNavigate();
+  const client = useApolloClient();
   const [mutate, result] = useMutation(AUTHENTICATE);
   const signIn = async ({ username, password }) => {
     try {
-      const data = await mutate({ variables: { credentials: { username, password } } });
-      return data; 
+      const { data } = await mutate({ variables: { credentials: { username, password } } });
+      const token = JSON.stringify(data.authenticate.accessToken);
+      await authStorage.setAccessToken(token );
+      //const onkoStoragessa = await authStorage.getAccessToken();
+      //console.log('onkoStoragessa: ' + onkoStoragessa);
+      client.resetStore();
+      navigate('/');
+      //return data; 
     } catch (error) {
       console.error(error);
       throw error; 
