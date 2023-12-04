@@ -20,3 +20,11 @@ export const GET_REPOSITORIES = gql`
   }
 `;
 
+export const GET_USER_INFO = gql`
+  query GetUserInfo {
+    me {
+      id
+      username
+    }
+  }
+`;

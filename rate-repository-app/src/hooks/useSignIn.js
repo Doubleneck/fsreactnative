@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
 import  useAuthStorage from '../hooks/useAuthStorage';
 import { useApolloClient } from '@apollo/client';
 import { useNavigate} from 'react-router-native';
@@ -14,11 +14,8 @@ const useSignIn = () => {
       const { data } = await mutate({ variables: { credentials: { username, password } } });
       const token = JSON.stringify(data.authenticate.accessToken);
       await authStorage.setAccessToken(token );
-      //const onkoStoragessa = await authStorage.getAccessToken();
-      //console.log('onkoStoragessa: ' + onkoStoragessa);
       client.resetStore();
       navigate('/');
-      //return data; 
     } catch (error) {
       console.error(error);
       throw error; 
