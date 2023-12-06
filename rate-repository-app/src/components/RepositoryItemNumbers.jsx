@@ -27,20 +27,20 @@ const styles = StyleSheet.create({
   
 const RepositoryItemNumbers = ({ repository }) => {
   return (
-    <View style={styles.numbersContainer}>
+    <View testID="stargazersCount" style={styles.numbersContainer}>
       <View style={styles.container}>
         <Text fontWeight="bold">{formatCount(repository.stargazersCount)}</Text>
         <Text>Stars</Text>
       </View>
-      <View style={styles.container}>
+      <View testID="forksCount" style={styles.container}>
         <Text fontWeight="bold">{formatCount(repository.forksCount)}</Text>
         <Text>Forks</Text>
       </View>
-      <View style={styles.container}>
+      <View testID="reviewCount" style={styles.container}>
         <Text fontWeight="bold">{formatCount(repository.reviewCount)}</Text>
         <Text>Reviews</Text>
       </View>
-      <View style={styles.container}>
+      <View testID="ratingAverage" style={styles.container}>
         <Text fontWeight="bold">{formatCount(repository.ratingAverage)}</Text>
         <Text>Rating</Text>
       </View>

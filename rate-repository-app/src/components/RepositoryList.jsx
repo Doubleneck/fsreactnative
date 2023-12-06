@@ -5,6 +5,11 @@ import useRepositories from '../hooks/useRepositories';
 const RepositoryList = () => {
   const { repositories } = useRepositories();
 
+  return <RepositoryListContainer repositories={repositories} />;
+};
+
+export const RepositoryListContainer = ({ repositories }) => {
+
   // Get the nodes from the edges array
   const repositoryNodes = repositories
     ? repositories.edges.map(edge => edge.node)
@@ -30,3 +35,4 @@ const styles = StyleSheet.create({
 });
 
 export default RepositoryList;
+
