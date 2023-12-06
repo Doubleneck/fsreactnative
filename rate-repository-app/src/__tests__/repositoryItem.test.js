@@ -48,8 +48,6 @@ describe('RepositoryList', () => {
       };
   
       render(<RepositoryListContainer repositories = {repositories }/>);
-    
-      screen.debug();
      
       expect(screen.getByText('jaredpalmer/formik')).toBeDefined();
     

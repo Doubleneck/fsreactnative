@@ -6,9 +6,9 @@ import theme from '../theme';
 const formatCount = (count) => {
   if (count >= 1000) {
     const formattedCount = (count / 1000).toFixed(1); // Use toFixed to round to one decimal place
-    return `${formattedCount}k`;
+    return `${formattedCount}`;
   }
-  return count.toString();
+  return count?.toString();
 };
 
 const styles = StyleSheet.create({
@@ -29,19 +29,19 @@ const RepositoryItemNumbers = ({ repository }) => {
   return (
     <View testID="stargazersCount" style={styles.numbersContainer}>
       <View style={styles.container}>
-        <Text fontWeight="bold">{formatCount(repository.stargazersCount)}</Text>
+        <Text fontWeight="bold">{formatCount(repository?.stargazersCount)}</Text>
         <Text>Stars</Text>
       </View>
       <View testID="forksCount" style={styles.container}>
-        <Text fontWeight="bold">{formatCount(repository.forksCount)}</Text>
+        <Text fontWeight="bold">{formatCount(repository?.forksCount)}</Text>
         <Text>Forks</Text>
       </View>
       <View testID="reviewCount" style={styles.container}>
-        <Text fontWeight="bold">{formatCount(repository.reviewCount)}</Text>
+        <Text fontWeight="bold">{formatCount(repository?.reviewCount)}</Text>
         <Text>Reviews</Text>
       </View>
       <View testID="ratingAverage" style={styles.container}>
-        <Text fontWeight="bold">{formatCount(repository.ratingAverage)}</Text>
+        <Text fontWeight="bold">{formatCount(repository?.ratingAverage)}</Text>
         <Text>Rating</Text>
       </View>
     </View>

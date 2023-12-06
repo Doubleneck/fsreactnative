@@ -9,13 +9,13 @@ const RepositoryItem = ({ repository }) => {
     <View testID="repositoryItem" style={styles.container} >
       <View style={styles.flexContainer}>
         <View style={styles.flexItemA}>
-          <Image style={styles.avatar} source={{ uri: repository.ownerAvatarUrl }} />
+          <Image style={styles.avatar} source={{ uri: repository?.ownerAvatarUrl }} />
         </View>
         <View style={styles.flexItemB}>
-          <Text testID="fullName" fontSize="subheading" fontWeight="bold" >{repository.fullName}</Text>
-          <Text testID="description" style={{ marginTop: 8, color: theme.colors.textSecondary }}  >{repository.description}</Text>
+          <Text testID="fullName" fontSize="subheading" fontWeight="bold" >{repository?.fullName}</Text>
+          <Text testID="description" style={{ marginTop: 8, color: theme.colors.textSecondary }}  >{repository?.description}</Text>
           <View style={styles.languageContainer}>
-            <Text testID="language" style={styles.languageText}>{repository.language}</Text>
+            <Text testID="language" style={styles.languageText}>{repository?.language}</Text>
           </View>
         </View>
       </View>

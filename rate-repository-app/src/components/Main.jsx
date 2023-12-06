@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import {  StyleSheet, View } from 'react-native';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-native';
-
 import RepositoryList from './RepositoryList';
 import SignIn from './SignIn';
 import AppBar from './AppBar';
@@ -9,6 +8,8 @@ import theme from '../theme';
 
 import { useApolloClient } from '@apollo/client';
 import  useAuthStorage from '../hooks/useAuthStorage';
+
+import RepositoryView from './RepositoryView';
 
 const styles = StyleSheet.create({
   container: {
@@ -37,12 +38,13 @@ const SignOut = () => {
 };
 
 const Main = () => {
-
+  
   return (
     <View style={styles.container}>
       <AppBar />
       <Routes>
         <Route path="/" element={<RepositoryList />} />
+        <Route path="/repositories/:repositoryId" element={<RepositoryView />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signout" element={<SignOut/>} />
         <Route path="*" element={<Navigate to="/" replace />} />
