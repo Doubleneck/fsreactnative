@@ -6,6 +6,7 @@ import theme from '../theme';
 import useSignIn from '../hooks/useSignIn';
 import * as yup from 'yup';
 
+
 const validationSchema = yup.object().shape({
   username: yup
     .string()
@@ -17,7 +18,8 @@ const validationSchema = yup.object().shape({
     .required('Password is required'),
 });
 
-const SignInForm = ({ onSubmit }) => {
+
+export const SignInForm = ({ onSubmit }) => {
   return(
     <View>
       <FormikTextInput style={styles.input} name="username" placeholder="Username" />
