@@ -9,7 +9,8 @@ import theme from '../theme';
 import { useApolloClient } from '@apollo/client';
 import  useAuthStorage from '../hooks/useAuthStorage';
 
-import RepositoryView from './RepositoryView';
+//import RepositoryView from './RepositoryView';
+import SingleRepository from './SingleRepository';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,7 +45,7 @@ const Main = () => {
       <AppBar />
       <Routes>
         <Route path="/" element={<RepositoryList />} />
-        <Route path="/repositories/:repositoryId" element={<RepositoryView />} />
+        <Route path="/repositories/:repositoryId" element={<SingleRepository/>} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signout" element={<SignOut/>} />
         <Route path="*" element={<Navigate to="/" replace />} />

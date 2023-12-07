@@ -7,11 +7,11 @@ import RepositoryItemNumbers from './RepositoryItemNumbers';
 const RepositoryItem = ({ repository }) => {
   return (
     <View testID="repositoryItem" style={styles.container} >
-      <View style={styles.flexContainer}>
-        <View style={styles.flexItemA}>
+      <View style={theme.flexContainer}>
+        <View style={theme.flexItemA}>
           <Image style={styles.avatar} source={{ uri: repository?.ownerAvatarUrl }} />
         </View>
-        <View style={styles.flexItemB}>
+        <View style={theme.flexItemB}>
           <Text testID="fullName" fontSize="subheading" fontWeight="bold" >{repository?.fullName}</Text>
           <Text testID="description" style={{ marginTop: 8, color: theme.colors.textSecondary }}  >{repository?.description}</Text>
           <View style={styles.languageContainer}>
@@ -27,28 +27,10 @@ const RepositoryItem = ({ repository }) => {
 };
 
 const styles = StyleSheet.create({
-  flexContainer: {
-    padding: 4,
-    display: 'flex',
-    flexDirection: 'row',  
-  },
+
   container: {
     padding: 4,
     backgroundColor: theme.colors.componentBackgroundColor, 
-  },
-  flexItemA: {
-    padding: 4,
-    flexGrow: 0,
-    backgroundColor: 'white',
-    maxWidth: '80%'
-  },
-  flexItemB: {
-    marginTop: 8,
-    marginLeft: 8,
-    padding: 4,
-    flexGrow: 0,
-    backgroundColor: 'white',
-    maxWidth: '80%'
   },
   avatar: {
     marginTop: 8,

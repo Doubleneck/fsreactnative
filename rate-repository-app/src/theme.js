@@ -24,6 +24,25 @@ const theme = {
     normal: '400',
     bold: '700',
   },
+  flexItemA: {
+    padding: 4,
+    flexGrow: 0,
+    backgroundColor: 'white',
+    maxWidth: '80%'
+  },
+  flexItemB: {
+    marginTop: 8,
+    marginLeft: 8,
+    padding: 4,
+    flexGrow: 0,
+    backgroundColor: 'white',
+    maxWidth: '80%'
+  },
+  flexContainer: {
+    padding: 4,
+    display: 'flex',
+    flexDirection: 'row',       
+  }
 };
   
 export default theme;
