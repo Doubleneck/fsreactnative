@@ -8,8 +8,8 @@ const useRepository = ({id}) => {
     fetchPolicy: 'cache-and-network',
   });
   
-  console.log('data', data);
-  console.log(data?.repository.fullName);
+  //   console.log('data', data);
+  //   console.log(data?.repository.fullName);
   return { repository: data ? data.repository : undefined, loading, error };
 };
 

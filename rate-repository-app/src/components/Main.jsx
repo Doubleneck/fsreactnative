@@ -9,12 +9,12 @@ import theme from '../theme';
 import { useApolloClient } from '@apollo/client';
 import  useAuthStorage from '../hooks/useAuthStorage';
 
-//import RepositoryView from './RepositoryView';
 import SingleRepository from './SingleRepository';
+import CreateReview from './CreateReview';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: theme.colors.mainBackground,
+    backgroundColor: theme.colors.mainBackgroundColor,
     flexGrow: 1,
     flexShrink: 1,
   },
@@ -46,6 +46,7 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<RepositoryList />} />
         <Route path="/repositories/:repositoryId" element={<SingleRepository/>} />
+        <Route path="/createreview" element={<CreateReview/>} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signout" element={<SignOut/>} />
         <Route path="*" element={<Navigate to="/" replace />} />

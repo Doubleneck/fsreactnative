@@ -9,7 +9,6 @@ import {  useParams } from 'react-router-native';
 import { format } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 
-
 const RepositoryInfo = ({ repository }) => {
     
   return(
@@ -39,8 +38,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center', 
   }, 
 });
-
-  
 
 const ReviewItem = ({ review }) => {
   const styles = StyleSheet.create({
@@ -73,9 +70,13 @@ const ReviewItem = ({ review }) => {
       padding: 4,
       backgroundColor: theme.colors.componentBackgroundColor, 
     },
+    outerContainer: {
+      padding: 4,
+      backgroundColor: theme.colors.mainBackgroundColor, 
+    },
     ratingContainer: {
       
-      
+      backgroundColor: theme.colors.componentBackgroundColor,
       padding: 8,
       marginTop: 8,
       margin: 8,
@@ -89,17 +90,19 @@ const ReviewItem = ({ review }) => {
 
   return(
     
-    <View key={review.node.id} style={styles.container}>
-      <View style={theme.flexContainer}>
-        <View style = {styles.ratingContainer} >
-          <View style = {theme.flexItemA} >
-            <Text style = {styles.ratingText } > {review.node.rating}</Text>
-          </View>  
-        </View>
-        <View style = {theme.flexItemB} >
-          <Text style = {styles.userText }> {review.node.user.username}</Text>
-          <Text style = {styles.dateText } > { formattedDate}</Text>
-          <Text style = {styles.textText } > {review.node.text}</Text>
+    <View key={review.node.id} style={styles.outerContainer}>
+      <View style={styles.container}>
+        <View style={theme.flexContainer}>
+          <View style = {styles.ratingContainer} >
+            <View style = {theme.flexItemA} >
+              <Text style = {styles.ratingText } > {review.node.rating}</Text>
+            </View>  
+          </View>
+          <View style = {theme.flexItemB} >
+            <Text style = {styles.userText }> {review.node.user.username}</Text>
+            <Text style = {styles.dateText } > { formattedDate}</Text>
+            <Text style = {styles.textText } > {review.node.text}</Text>
+          </View>
         </View>
       </View>
     </View>);
@@ -110,11 +113,12 @@ const SingleRepository = () => {
   const { repository } =  useRepository({ id: repositoryId });
   const data = useReviews({ id: repository?.id });
   const reviews = data.reviews?.edges;
- 
+  const ItemSeparator = () => <View style={styles.separator} />;
   return (
     
-    <FlatList style={styles.scrollView}
+    <FlatList style={styles.scrollView} 
       data={reviews}
+      ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) =>  <ReviewItem review={item} />}
       keyExtractor={({ id }) => id}
       ListHeaderComponent={() =>  <RepositoryInfo repository={repository} />}

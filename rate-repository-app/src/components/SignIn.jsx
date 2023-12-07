@@ -18,7 +18,6 @@ const validationSchema = yup.object().shape({
     .required('Password is required'),
 });
 
-
 export const SignInForm = ({ onSubmit }) => {
   return(
     <View>
@@ -77,5 +76,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignIn;
-
-

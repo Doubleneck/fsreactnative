@@ -14,9 +14,15 @@ const AppBar = () => {
         <AppBarTab text="Repositories" />
       </Link>
       {user ? (
-        <Link to="/signout">
-          <AppBarTab text="Sign out" />
-        </Link>
+        <>
+          <Link to="/createreview">
+            <AppBarTab text="Create a review" />
+          </Link>
+
+          <Link to="/signout">
+            <AppBarTab text="Sign out" />
+          </Link>
+        </>
       ) : (
         <Link to="/signin">
           <AppBarTab text="Sign in" />
