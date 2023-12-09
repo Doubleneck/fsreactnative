@@ -14,7 +14,6 @@ const RepositoryInfo = ({ repository }) => {
   return(
     <View>
       <RepositoryItem repository={repository} />
-      
       <Pressable style = {styles.linkContainer} onPress={() => Linking.openURL(repository?.url)}>    
         <Text style = {styles.linkText} > Open in GitHub</Text>
       </Pressable>
@@ -120,7 +119,7 @@ const SingleRepository = () => {
       data={reviews}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) =>  <ReviewItem review={item} />}
-      keyExtractor={({ id }) => id}
+      keyExtractor={({ node }) => node.id} 
       ListHeaderComponent={() =>  <RepositoryInfo repository={repository} />}
     />
   );

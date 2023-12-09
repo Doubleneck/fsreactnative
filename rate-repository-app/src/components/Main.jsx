@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import {  StyleSheet, View } from 'react-native';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-native';
-import RepositoryList from './RepositoryList';
-import SignIn from './SignIn';
-import AppBar from './AppBar';
-import theme from '../theme';
-
 import { useApolloClient } from '@apollo/client';
+import RepositoryList from './RepositoryList';
+
 import  useAuthStorage from '../hooks/useAuthStorage';
 
 import SingleRepository from './SingleRepository';
 import CreateReview from './CreateReview';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
+import AppBar from './AppBar';
+import theme from '../theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,6 +49,7 @@ const Main = () => {
         <Route path="/repositories/:repositoryId" element={<SingleRepository/>} />
         <Route path="/createreview" element={<CreateReview/>} />
         <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut/>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

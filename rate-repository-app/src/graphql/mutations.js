@@ -8,6 +8,15 @@ mutation authenticate($credentials: AuthenticateInput!) {
   }
 `;
 
+export const CREATE_USER = gql`
+  mutation createUser($input: CreateUserInput!) {
+    createUser(user: $input) {
+      id
+      username
+    }
+  }
+`;
+
 export const CREATE_REVIEW = gql`
 mutation CreateReviewMutation($input: CreateReviewInput!) {
     createReview(review: $input) {
