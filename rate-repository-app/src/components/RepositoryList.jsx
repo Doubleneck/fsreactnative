@@ -1,14 +1,73 @@
+import React from 'react';
 import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
 import { useNavigate } from 'react-router-native';
+import { Button, Menu, Divider, PaperProvider } from 'react-native-paper';
 
+import { useState } from 'react';
+import { Text } from 'react-native';
+import theme from '../theme';
+import { set } from 'date-fns';
 
 const RepositoryList = () => {
-  const { repositories } = useRepositories();
+  
+  const [selectedOrderBy, setSelectedOrderBy] = useState('CREATED_AT');
+  const [selectedOrderDirection, setSelectedOrderDirection] = useState('DESC');
+  const [menuText, setMenuText] = useState('Latest repositories' );
+  const [visible, setVisible] = React.useState(false);
+  const { repositories } = useRepositories(selectedOrderBy, selectedOrderDirection);
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
 
-  return <RepositoryListContainer repositories={repositories} />;
+  return (
+    
+    <PaperProvider>
+      <View
+        style={{
+          paddingTop: 10,
+          flexDirection: 'row',
+          justifyContent: 'center',
+           
+        }}>
+        <Menu
+          visible={visible}
+          onDismiss={closeMenu}
+          anchor={<Button onPress={openMenu}  ><Text style={{ color: theme.colors.textPrimary }}>{menuText}</Text></Button>}>
+          <Menu.Item
+            onPress={() => {
+              setSelectedOrderBy('CREATED_AT');
+              setSelectedOrderDirection('DESC');
+              setMenuText('Latest repositories');
+            }}
+            title="Latest repositories"
+          />
+          <Divider />
+          <Menu.Item
+            onPress={() => {
+              setSelectedOrderBy('RATING_AVERAGE');
+              setSelectedOrderDirection('DESC');
+              setMenuText('Highest rated repositories');
+            }}
+            title="Highest rated repositories"
+          />
+          <Divider />
+          <Menu.Item
+            onPress={() => {
+              setSelectedOrderBy('RATING_AVERAGE');
+              setSelectedOrderDirection('ASC');
+              setMenuText('Lowest rated repositories');
+            }}
+            title="Lowest rated repositories"
+          />
+        </Menu>
+      </View>
+      <RepositoryListContainer repositories={repositories} />
+    </PaperProvider>
+    
+  );
 };
+
 
 export const RepositoryListContainer = ({ repositories }) => {
   const  navigate = useNavigate();
