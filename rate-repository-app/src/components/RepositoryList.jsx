@@ -3,12 +3,11 @@ import { FlatList, View, StyleSheet, Pressable } from 'react-native';
 import RepositoryItem from './RepositoryItem';
 import useRepositories from '../hooks/useRepositories';
 import { useNavigate } from 'react-router-native';
-import { Button, Menu, Divider, PaperProvider } from 'react-native-paper';
-
+import { Button, Menu, Divider, PaperProvider, Searchbar } from 'react-native-paper';
 import { useState } from 'react';
 import { Text } from 'react-native';
 import theme from '../theme';
-import { set } from 'date-fns';
+import { useDebounce } from 'use-debounce';
 
 const RepositoryList = () => {
   
@@ -16,20 +15,30 @@ const RepositoryList = () => {
   const [selectedOrderDirection, setSelectedOrderDirection] = useState('DESC');
   const [menuText, setMenuText] = useState('Latest repositories' );
   const [visible, setVisible] = React.useState(false);
-  const { repositories } = useRepositories(selectedOrderBy, selectedOrderDirection);
+ 
+  const [searchQuery, setSearchQuery] = React.useState('');
+  const [debouncedSearchQuery] = useDebounce(searchQuery, 1000);
+  const { repositories } = useRepositories(selectedOrderBy, selectedOrderDirection, debouncedSearchQuery);
+ 
+  const onChangeSearch = query => setSearchQuery(query);
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
 
   return (
     
     <PaperProvider>
+      <Searchbar style={{ margin: 10, backgroundColor: 'white' }}
+        placeholder="Search"
+        onChangeText={onChangeSearch}
+        value={searchQuery}
+      />
       <View
         style={{
           paddingTop: 10,
           flexDirection: 'row',
           justifyContent: 'center',
-           
         }}>
+        
         <Menu
           visible={visible}
           onDismiss={closeMenu}
