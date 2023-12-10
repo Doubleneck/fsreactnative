@@ -1,5 +1,61 @@
 import { gql } from '@apollo/client';
 
+export const GET_USER_INFO = gql`
+  query GetUserInfo {
+    me {
+      id
+      username
+    }
+  }
+`;
+
+// export const GET_USER_REVIEWS = gql`
+// query Me {
+//   me {
+//   reviews {
+//     edges {
+//       node {
+//         user {
+//           reviews {
+//             edges {
+//               node {
+//                 rating
+//                 createdAt
+//                 text
+//                 repository {
+//                   ownerName
+//                   name
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+//   }
+// }`;
+export const GET_USER_REVIEWS = gql`
+query Me {
+  me {
+    username
+    reviews {
+      edges {
+        node {
+          id
+          rating
+          text
+          createdAt
+          repository {
+            ownerName
+            name
+          }
+        }
+      }
+    }
+  }
+}`;
+
 export const GET_REPOSITORIES = gql`
   query GetRepositories($orderBy: AllRepositoriesOrderBy, $orderDirection: OrderDirection, $searchKeyword: String){
     repositories (orderBy: $orderBy, orderDirection: $orderDirection searchKeyword: $searchKeyword) {
@@ -60,11 +116,3 @@ query GetReviews($id: ID!) {
   }
 `;
 
-export const GET_USER_INFO = gql`
-  query GetUserInfo {
-    me {
-      id
-      username
-    }
-  }
-`;

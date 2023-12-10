@@ -8,9 +8,11 @@ import  useAuthStorage from '../hooks/useAuthStorage';
 
 import SingleRepository from './SingleRepository';
 import CreateReview from './CreateReview';
+import MyReviews from './MyReviews';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 import AppBar from './AppBar';
+
 import theme from '../theme';
 
 const styles = StyleSheet.create({
@@ -48,6 +50,7 @@ const Main = () => {
         <Route path="/" element={<RepositoryList />} />
         <Route path="/repositories/:repositoryId" element={<SingleRepository/>} />
         <Route path="/createreview" element={<CreateReview/>} />
+        <Route path="/myreviews" element={<MyReviews/>} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signout" element={<SignOut/>} />
